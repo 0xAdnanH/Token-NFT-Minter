@@ -40,7 +40,7 @@ contract TokenSwap is ERC721 {
 
     function swap(uint256 tokenAmount) external {
         require(
-            IERC20(USDC).balanceOf(msg.sender) >= tokenAmount,
+            IERC20(USDC).balanceOf(msg.sender) >= pricePerNFT * tokenAmount,
             "Insufficient USDC Balance"
         );
 

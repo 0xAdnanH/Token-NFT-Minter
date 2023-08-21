@@ -21,19 +21,19 @@ describe("Constructor Test", () => {
 });
 describe("Nft Buy", () => {
   it("should buy nft successfully", async () => {
-    await mockContract.mint(buyer, 500000);
-    expect(await mockContract.balanceOf(buyer)).to.equal(500000);
-    await mockContract.connect(buyer).approve(contract, 500000);
+    await mockContract.mint(buyer, 50000);
+    expect(await mockContract.balanceOf(buyer)).to.equal(50000);
+    await mockContract.connect(buyer).approve(contract, 50000);
 
     await contract.connect(buyer).swap(500);
     expect(await contract.nftCounter()).to.equal(2);
     expect(await contract.ownerOf(1)).to.equal(buyer.address);
-    expect(await mockContract.balanceOf(buyer)).to.equal(495000);
+    expect(await mockContract.balanceOf(buyer)).to.equal(45000);
   });
 });
 describe("Testing error", () => {
   it("should revert tokenBalance", async () => {
-    await mockContract.connect(buyer).approve(contract, 495000);
+    await mockContract.connect(buyer).approve(contract, 45000);
     await expect(contract.connect(buyer).swap(500000)).to.be.revertedWith(
       "Insufficient USDC Balance"
     );
