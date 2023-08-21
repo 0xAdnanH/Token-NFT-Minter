@@ -9,7 +9,7 @@ before(async () => {
   const factory = await ethers.getContractFactory("TokenSwap");
   const Mockfactory = await ethers.getContractFactory("mintToken");
   mockContract = await Mockfactory.deploy("minttoken", "MTK");
-  contract = await factory.deploy("Token", "TKN", 1, mockContract);
+  contract = await factory.deploy("Token", "TKN", 1, mockContract, 10);
 });
 
 describe("Constructor Test", () => {
@@ -21,20 +21,20 @@ describe("Constructor Test", () => {
 });
 describe("Nft Buy", () => {
   it("should buy nft successfully", async () => {
-    await mockContract.mint(buyer, 1000);
-    expect(await mockContract.balanceOf(buyer)).to.equal(1000);
-    await mockContract.connect(buyer).approve(contract, 1000);
+    await mockContract.mint(buyer, 500000);
+    expect(await mockContract.balanceOf(buyer)).to.equal(500000);
+    await mockContract.connect(buyer).approve(contract, 500000);
 
     await contract.connect(buyer).swap(500);
     expect(await contract.nftCounter()).to.equal(2);
     expect(await contract.ownerOf(1)).to.equal(buyer.address);
-    expect(await mockContract.balanceOf(buyer)).to.equal(500);
+    expect(await mockContract.balanceOf(buyer)).to.equal(495000);
   });
 });
 describe("Testing error", () => {
   it("should revert tokenBalance", async () => {
-    await mockContract.connect(buyer).approve(contract, 500);
-    await expect(contract.connect(buyer).swap(770)).to.be.revertedWith(
+    await mockContract.connect(buyer).approve(contract, 495000);
+    await expect(contract.connect(buyer).swap(500000)).to.be.revertedWith(
       "Insufficient USDC Balance"
     );
   });
