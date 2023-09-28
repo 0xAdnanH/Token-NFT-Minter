@@ -7,6 +7,8 @@ The Token-NFT Minter project focuses on the process of minting an NFT based on t
 The primary goal of the Token-NFT Minter project is to:
 
 - **Establish a Link between ERC20 Deposits and NFT Minting:** Enable users to mint an ERC721 NFT upon depositing a specified amount of an ERC20 token. The NFT's tokenId is associated with the deposited amount and the deposit time.
+- **Showcase how NFT metadata can be generated onchain with Smart Contract data as shown in the following image:** ![nft](https://github.com/0xAdnanH/Token-NFT-Minter/assets/123894765/0b8c36e9-cd30-4617-8632-db8dc5650312) . 
+
 
 ## Technicalities of the Project
 
